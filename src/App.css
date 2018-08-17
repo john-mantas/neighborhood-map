@@ -5,3 +5,11 @@
   light blue: #1ed2f4
   dark blue: #254558
 } */
+
+.App {
+  height: 100%;
+}
+
+main {
+  height: 93vh;
+}
