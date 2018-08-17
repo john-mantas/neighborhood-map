@@ -1,0 +1,31 @@
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  background-color: #2b2b3a;
+}
+
+.header__menu-btn {
+  padding: 1em;
+  border: none;
+  background: #1ed2f4;
+}
+
+.header__menu-btn:active i {
+  transform: scale(0.9);
+}
+
+.header__menu-btn i {
+  font-size: 2em;
+  color: #254558;
+}
+
+.header__title {
+  flex: 1;
+  margin: 0.5em;
+  text-align: center;
+  color: #f4f5f6;
+}
