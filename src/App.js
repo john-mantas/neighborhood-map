@@ -30,7 +30,7 @@ class App extends Component {
       <div className="App">
         <Header />
         <main>
-          <Map />
+          <Map parentState={this.state}/>
         </main>
       </div>
     );
