@@ -19,7 +19,7 @@ class Map extends React.Component {
     let allMarkers = []
     let bounds = new google.maps.LatLngBounds()
 
-    this.props.parentState.acropolisLocations.map((m, index) => {
+    this.props.parentState.acropolisLocations.forEach((m, index) => {
       let marker = new google.maps.Marker({
         map: map,
         position: m.location,
