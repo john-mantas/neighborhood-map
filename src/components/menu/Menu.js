@@ -2,26 +2,32 @@ import React from 'react'
 import './Menu.css'
 
 class Menu extends React.Component {
+  state = {
+    query: ''
+  }
+
+  search = (str) => {
+    this.setState({ query: str })
+    this.props.search(str)
+  }
+
   render() {
     return (
-      <nav className={this.props.parentState.menuShowing?"menu is-open":"menu"}>
-        <form>
-          <div className="search">
-            <input
-              type="search"
-              className="search__input"
-              placeholder="Search for a place..."
-              required
-            />
-            <button className="search__button">
-              <i className="material-icons">search</i>
-            </button>
+      <nav className={this.props.parentState.menuShowing ? "menu is-open" : "menu"}>
+        <div className="search">
+          <div className="search__button">
+            <i className="material-icons">search</i>
           </div>
-        </form>
+          <input
+            type="search"
+            className="search__input"
+            placeholder="Search for a place..."
+            value={this.state.query}
+            onChange={(e) => { this.search(e.target.value) }}
+          />
+        </div>
         <ul className="places-list">
-          {this.props.parentState.acropolisLocations.map((m, index) => (
-            <li key={index}>{m.title}</li>
-          ))}
+          {this.props.children}
         </ul>
       </nav>
 

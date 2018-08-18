@@ -7,13 +7,23 @@ import Map from './components/map/Map'
 class App extends Component {
   state = {
     acropolisLocations: [],
-    menuShowing: false
+    menuShowing: false,
+    activeLocations: []
   }
 
   toggleMenu = () => {
     this.setState((prevState) => ({
        menuShowing: !prevState.menuShowing
     }))
+  }
+
+  searchHandler = (str) => {
+    // RegExp from: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
+    const term = new RegExp(str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i')
+    let results = this.state.acropolisLocations.filter((f) => (
+      term.test(f.title)
+    ))
+    this.setState({ activeLocations: results })
   }
 
   componentDidMount() {
@@ -28,7 +38,7 @@ class App extends Component {
       })
       .then(
         (response) => {
-          this.setState({ acropolisLocations: response })
+          this.setState({ acropolisLocations: response, activeLocations: response })
         }
       )
   }
@@ -39,7 +49,11 @@ class App extends Component {
         <Header toggleMenu={this.toggleMenu} />
         <main>
           <Map parentState={this.state} />
-          <Menu parentState={this.state} />
+          <Menu parentState={this.state} search={this.searchHandler}>
+          {this.state.activeLocations.map((m, index) => (
+            <li key={index}>{m.title}</li>
+          ))}
+          </Menu>
         </main>
       </div>
     );

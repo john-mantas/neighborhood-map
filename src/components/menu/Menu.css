@@ -25,7 +25,6 @@
 
 .search__input,
 .search__button {
-  height: 100%;
   padding: 0;
   margin: 0;
   border: none;
@@ -40,15 +39,14 @@
 }
 
 .search__button {
-  width: 7vh;
-  margin-left: 1em;
-  box-sizing: content-box;
+  display: flex;
+  padding-left: 1em;
   color: #1ed2f4;
 }
 
-.search__input:valid + .search__button {
-  color: #eafc40;
-  border-bottom: 1px solid #eafc40;
+.search__button i {
+  margin: auto;
+  font-size: 1.5em;
 }
 
 .places-list {
