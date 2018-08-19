@@ -20,7 +20,7 @@ class App extends Component {
   }
 
   searchHandler = (str) => {
-    // RegExp from: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
+    // RegExp from MDN
     const term = new RegExp(str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i')
     let results = this.state.acropolisLocations.filter((f) => (
       term.test(f.title)
@@ -35,6 +35,13 @@ class App extends Component {
     let allMarkers = []
     let bounds = new window.google.maps.LatLngBounds()
 
+    this.setState((prevState) => ({
+      markers: prevState.markers.map((m) => (
+        m.setVisible(false)
+      ))
+    }))
+
+    console.log('markers are hidden')
     this.state.activeLocations.forEach((m, index) => {
       let marker = new window.google.maps.Marker({
         map: this.state.map,
@@ -75,7 +82,7 @@ class App extends Component {
       <div className="App">
         <Header toggleMenu={this.toggleMenu} />
         <main>
-          <Map parentState={this.state} update={this.updateMap}/>
+          <Map parentState={this.state} update={this.updateMap} />
           <Menu parentState={this.state} search={this.searchHandler}>
             {this.state.activeLocations.map((m, index) => (
               <li key={index}>{m.title}</li>
