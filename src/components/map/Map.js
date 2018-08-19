@@ -1,37 +1,21 @@
 import React from 'react'
 import './Map.css'
 
-let google, map
+let google
 
 class Map extends React.Component {
   state = {
-    apiKey: 'AIzaSyBce63rAIy8_yjBNsj_y4a31r3dPh1Og-4',
-    markers: []
+    apiKey: 'AIzaSyBce63rAIy8_yjBNsj_y4a31r3dPh1Og-4'
   }
 
   initMap = () => {
     google = window.google
-    map = new google.maps.Map(document.getElementById('map'), {
+    this.props.parentState.map = new google.maps.Map(document.getElementById('map'), {
       center: { lat: 37.9713719, lng: 23.7264101 },
       zoom: 17
     });
-
-    let allMarkers = []
-    let bounds = new google.maps.LatLngBounds()
-
-    this.props.parentState.acropolisLocations.forEach((m, index) => {
-      let marker = new google.maps.Marker({
-        map: map,
-        position: m.location,
-        title: m.title,
-        animation: google.maps.Animation.DROP,
-        id: index
-      });
-      allMarkers.push(marker)
-      bounds.extend(allMarkers[index].position)
-    })
-    map.fitBounds(bounds)
-    this.setState({ markers: allMarkers })
+    this.props.update()
+    console.log('initMap updated the map')
   }
 
   componentWillMount() {

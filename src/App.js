@@ -6,6 +6,8 @@ import Map from './components/map/Map'
 
 class App extends Component {
   state = {
+    map: '',
+    markers: [],
     acropolisLocations: [],
     menuShowing: false,
     activeLocations: []
@@ -13,7 +15,7 @@ class App extends Component {
 
   toggleMenu = () => {
     this.setState((prevState) => ({
-       menuShowing: !prevState.menuShowing
+      menuShowing: !prevState.menuShowing
     }))
   }
 
@@ -24,9 +26,33 @@ class App extends Component {
       term.test(f.title)
     ))
     this.setState({ activeLocations: results })
+    console.log('search handled')
+    this.updateMap()
+    console.log('search handler updated the map')
+  }
+
+  updateMap = () => {
+    let allMarkers = []
+    let bounds = new window.google.maps.LatLngBounds()
+
+    this.state.activeLocations.forEach((m, index) => {
+      let marker = new window.google.maps.Marker({
+        map: this.state.map,
+        position: m.location,
+        title: m.title,
+        animation: window.google.maps.Animation.DROP,
+        id: index
+      });
+      allMarkers.push(marker)
+      bounds.extend(allMarkers[index].position)
+    })
+    this.state.map.fitBounds(bounds)
+    this.setState({ markers: allMarkers })
+    console.log('map updated')
   }
 
   componentDidMount() {
+    console.log('app did mount')
     fetch('./data/acropolis.json', {
       headers: {
         'Content-Type': 'application/json',
@@ -44,15 +70,16 @@ class App extends Component {
   }
 
   render() {
+    console.log('app render')
     return (
       <div className="App">
         <Header toggleMenu={this.toggleMenu} />
         <main>
-          <Map parentState={this.state} />
+          <Map parentState={this.state} update={this.updateMap}/>
           <Menu parentState={this.state} search={this.searchHandler}>
-          {this.state.activeLocations.map((m, index) => (
-            <li key={index}>{m.title}</li>
-          ))}
+            {this.state.activeLocations.map((m, index) => (
+              <li key={index}>{m.title}</li>
+            ))}
           </Menu>
         </main>
       </div>
