@@ -43,6 +43,7 @@ class App extends Component {
 
     console.log('markers are hidden')
     this.state.activeLocations.forEach((m, index) => {
+      // Create the marker
       let marker = new window.google.maps.Marker({
         map: this.state.map,
         position: m.location,
@@ -52,10 +53,28 @@ class App extends Component {
       });
       allMarkers.push(marker)
       bounds.extend(allMarkers[index].position)
+      // Create the infoWindow
+      let infoWindow = new window.google.maps.InfoWindow({
+        content: m.title
+      })
+      marker.addListener('click', () => {
+        infoWindow.open(this.state.map, marker)
+      })
+      window.google.maps.event.addListener(infoWindow, 'closeclick', function () {
+        marker.getAnimation() && marker.setAnimation(null)
+      });
     })
+    console.log('map updated')
     this.state.map.fitBounds(bounds)
     this.setState({ markers: allMarkers })
-    console.log('map updated')
+    console.log('markers updated')
+  }
+
+  // https://stackoverflow.com/questions/9194579/how-to-simulate-a-click-on-a-google-maps-marker
+  activateMarker = (index) => {
+    window.google.maps.event.trigger(this.state.markers[index], "click")
+    this.toggleMenu()
+    this.state.markers[index].setAnimation(window.google.maps.Animation.BOUNCE)
   }
 
   componentDidMount() {
@@ -85,7 +104,9 @@ class App extends Component {
           <Map parentState={this.state} update={this.updateMap} />
           <Menu parentState={this.state} search={this.searchHandler}>
             {this.state.activeLocations.map((m, index) => (
-              <li key={index}>{m.title}</li>
+              <li key={index} onClick={event => this.activateMarker(index)} role="button">
+                {m.title}
+              </li>
             ))}
           </Menu>
         </main>
