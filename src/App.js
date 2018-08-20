@@ -3,6 +3,7 @@ import './App.css';
 import Header from './components/header/Header'
 import Menu from './components/menu/Menu'
 import Map from './components/map/Map'
+import Asideinfo from './components/asideInfo/AsideInfo';
 
 class App extends Component {
   state = {
@@ -109,6 +110,7 @@ class App extends Component {
               </li>
             ))}
           </Menu>
+          <Asideinfo />
         </main>
       </div>
     );

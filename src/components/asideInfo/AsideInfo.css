@@ -1,0 +1,42 @@
+.aside-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 350px;
+  height: 100%;
+  overflow: auto;
+  background-color: #1b1b1e;
+  color: #f4f5f6;
+}
+
+.aside-image {
+  width: 100%;
+  height: 250px;
+  background-size: cover;
+  background-position: center;
+}
+.aside-text {
+  padding: 1.5em;
+}
+
+.aside-text__header {
+  margin: 1.5em 0;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.aside-text__snippet {
+  margin: 2em 0;
+}
+
+.aside-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 3em;
+  height: 3em;
+  border: none;
+  text-align: center;
+  color: #1b1b1e;
+  background-color: #1ed2f4;
+}
