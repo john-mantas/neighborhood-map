@@ -116,6 +116,10 @@ class App extends Component {
           this.setState({ acropolisLocations: response, activeLocations: response })
         }
       )
+      .catch(error => {
+        alert(`We couldn't retrieve the locations, try again later.`)
+        console.log(error)
+      })
   }
 
   render() {
