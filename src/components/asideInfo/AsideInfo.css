@@ -9,6 +9,7 @@
   background-color: #1b1b1e;
   color: #f4f5f6;
   box-shadow: 0 0 15px -2px #1b1b1e;
+  z-index: 200;
 }
 
 .aside-container.is-open {

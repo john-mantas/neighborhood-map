@@ -80,7 +80,7 @@ class App extends Component {
         marker.getAnimation() && marker.setAnimation(null)
       });
       window.google.maps.event.addListener(infoWindow, 'domready', () => {
-        document.getElementById(`gm_btn_open-${index}`).addEventListener('click', (e)=> {
+        document.getElementById(`gm_btn_open-${index}`).addEventListener('click', (e) => {
           this.showAside(e.target.dataset.title)
           marker.getAnimation() && marker.setAnimation(null)
           infoWindow.close()
@@ -126,9 +126,8 @@ class App extends Component {
     console.log('app render')
     return (
       <div className="App">
-        <Header toggleMenu={this.toggleMenu} />
+        <Header parentState={this.state} toggleMenu={this.toggleMenu} />
         <main>
-          <Map parentState={this.state} update={this.updateMap} />
           <Menu parentState={this.state} search={this.searchHandler}>
             {this.state.activeLocations.map((m, index) => (
               <li key={index} onClick={event => this.activateMarker(index)} role="button">
@@ -136,6 +135,7 @@ class App extends Component {
               </li>
             ))}
           </Menu>
+          <Map parentState={this.state} update={this.updateMap} />
           <Asideinfo key={this.state.asideData} parentState={this.state} toggleAside={this.toggleAside} />
         </main>
       </div>
