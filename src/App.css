@@ -14,3 +14,31 @@ main {
   position: relative;
   height: 93vh;
 }
+
+.gm-infowindow {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+.gm-infowindow__title {
+  /* padding: 10px 0; */
+  margin: 20px auto;
+  font-size: 1.5em;
+}
+
+.gm-infowindow__button {
+  padding: 10px 15px;
+  margin: 10px 0;
+  border: none;
+  font-size: 1.1em;
+  font-weight: 700;
+  background: #1ed2f4;
+  color: #254558;
+  box-shadow: 0 0 10px -3px #1b1b1e;
+  cursor: pointer;
+}
+
+.gm-infowindow__button:hover {
+  box-shadow: 0 0 15px -3px #1b1b1e;
+}

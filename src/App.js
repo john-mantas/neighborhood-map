@@ -11,13 +11,25 @@ class App extends Component {
     markers: [],
     acropolisLocations: [],
     menuShowing: false,
-    activeLocations: []
+    activeLocations: [],
+    asideShowing: false,
+    asideData: ''
   }
 
   toggleMenu = () => {
     this.setState((prevState) => ({
       menuShowing: !prevState.menuShowing
     }))
+  }
+
+  toggleAside = () => {
+    this.setState((prevState) => ({
+      asideShowing: !prevState.asideShowing
+    }))
+  }
+
+  showAside = (data) => {
+    this.setState({ asideShowing: true, asideData: data })
   }
 
   searchHandler = (str) => {
@@ -56,13 +68,23 @@ class App extends Component {
       bounds.extend(allMarkers[index].position)
       // Create the infoWindow
       let infoWindow = new window.google.maps.InfoWindow({
-        content: m.title
+        content: `<div class="gm-infowindow">
+                    <p class="gm-infowindow__title">${m.title}</p>
+                    <button class="gm-infowindow__button" id=gm_btn_open-${index} data-title="${m.title}">Learn More</button>
+                  </div>`
       })
       marker.addListener('click', () => {
         infoWindow.open(this.state.map, marker)
       })
       window.google.maps.event.addListener(infoWindow, 'closeclick', function () {
         marker.getAnimation() && marker.setAnimation(null)
+      });
+      window.google.maps.event.addListener(infoWindow, 'domready', () => {
+        document.getElementById(`gm_btn_open-${index}`).addEventListener('click', (e)=> {
+          this.showAside(e.target.dataset.title)
+          marker.getAnimation() && marker.setAnimation(null)
+          infoWindow.close()
+        })
       });
     })
     console.log('map updated')
@@ -110,7 +132,7 @@ class App extends Component {
               </li>
             ))}
           </Menu>
-          <Asideinfo />
+          <Asideinfo key={this.state.asideData} parentState={this.state} toggleAside={this.toggleAside} />
         </main>
       </div>
     );
