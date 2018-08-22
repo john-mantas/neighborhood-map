@@ -1,5 +1,6 @@
 import React from 'react'
 import './Menu.css'
+import { DebounceInput } from 'react-debounce-input'
 
 class Menu extends React.Component {
   state = {
@@ -18,7 +19,10 @@ class Menu extends React.Component {
           <div className="search__button">
             <i className="material-icons">search</i>
           </div>
-          <input
+          <DebounceInput
+            minLength={2}
+            debounceTimeout={500}
+            element="input"
             type="search"
             className="search__input"
             placeholder="Search for a place..."

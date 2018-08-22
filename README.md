@@ -28,6 +28,7 @@ or
 
 ### Dependencies
 * [React](https://github.com/facebook/react/)
+* [React Debounce Input](https://github.com/nkbt/react-debounce-input)
 * [Normalize](https://necolas.github.io/normalize.css/)
 
 ### APIs Used
