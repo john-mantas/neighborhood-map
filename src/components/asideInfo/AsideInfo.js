@@ -11,12 +11,14 @@ class Asideinfo extends React.Component {
 
   componentDidMount() {
     const endpoint = encodeURI(`https://en.wikipedia.org/api/rest_v1/page/summary/${this.props.parentState.asideData}`)
+
     this.props.parentState.asideData && (
       fetch(endpoint)
         .then(response => response.json())
         .then(response => {
           this.setState({
-            status: true, data: response,
+            status: true,
+            data: response,
             imageUrl: response.thumbnail.source,
             articleUrl: response.content_urls.desktop.page
           })
@@ -40,7 +42,7 @@ class Asideinfo extends React.Component {
               <p className="aside-text__source">Source: <a href={this.state.articleUrl} target="_blank">Wikipedia</a></p>
             </div>
           </div>
-          : <h2 className="aside__not-available">We couldn't retrieve details about this location.<br/>Try again later.</h2>
+          : <h2 className="aside__not-available">We couldn't retrieve details about this location.<br />Try again later.</h2>
         }
       </aside>
     );

@@ -16,7 +16,7 @@ class Menu extends React.Component {
     return (
       <nav className={this.props.parentState.menuShowing ? "menu is-open" : "menu"}>
         <div className="search">
-          <div className="search__button">
+          <div className="search__icon">
             <i className="material-icons">search</i>
           </div>
           <DebounceInput

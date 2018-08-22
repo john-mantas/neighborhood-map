@@ -1,16 +1,13 @@
 import React from 'react'
 import './Map.css'
 
-let google
-
 class Map extends React.Component {
   state = {
     apiKey: 'AIzaSyBce63rAIy8_yjBNsj_y4a31r3dPh1Og-4'
   }
 
   initMap = () => {
-    google = window.google
-    this.props.parentState.map = new google.maps.Map(document.getElementById('map'), {
+    this.props.parentState.map = new window.google.maps.Map(document.getElementById('map'), {
       center: { lat: 37.9713719, lng: 23.7264101 },
       zoom: 16,
       styles: [
@@ -128,7 +125,6 @@ class Map extends React.Component {
       ]
     });
     this.props.update()
-    console.log('initMap updated the map')
   }
 
   componentWillMount() {
