@@ -1,5 +1,5 @@
 .aside-container {
-  display: none;
+  display: block;
   position: absolute;
   top: 0;
   right: 0;
@@ -8,12 +8,15 @@
   overflow: auto;
   background-color: #1b1b1e;
   color: #f4f5f6;
-  box-shadow: 0 0 15px -2px #1b1b1e;
   z-index: 200;
+  transform: translateX(100%);
+  transition: ease-in-out 0.2s;
 }
 
 .aside-container.is-open {
-  display: block;
+  box-shadow: 0 0 15px -2px #1b1b1e;
+  transform: translateX(0%);
+  transition: ease-in-out 0.2s;
 }
 
 .aside-image {

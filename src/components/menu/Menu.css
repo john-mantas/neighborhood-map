@@ -9,12 +9,18 @@
   text-transform: uppercase;
   color: #f4f5f6;
   background-color: #1b1b1ef3;
-  transition: 0.2s;
+  transition: ease-in-out 0.2s;
 }
 
 .is-open {
   display: flex;
-  z-index: 300;
+}
+
+.menu.is-open + #map {
+  transition: ease-in-out 0.2s;
+  transform: scale(0.8) translateY(100%);
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 .search {
@@ -69,6 +75,10 @@
 }
 
 @media only screen and (min-width: 415px) {
+  .menu.is-open + #map {
+    transform: scale(0.8) translateX(-100%);
+  }
+
   .search {
     width: 70%;
     margin: 1.5em auto;
