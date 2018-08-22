@@ -1,4 +1,4 @@
-# Neighbohood Map - React
+# Neighborhood Map - React
 A responsive browser based app that features an interactive map which includes locations and informations about each one.
 
 This is the final project for the Udacity Front End developer Nanodegree program.
@@ -31,7 +31,7 @@ or
 * [React Debounce Input](https://github.com/nkbt/react-debounce-input)
 * [Normalize](https://necolas.github.io/normalize.css/)
 
-### APIs Used
+## APIs Used
 * [Google Maps Javascript API](https://developers.google.com/maps/documentation/javascript/tutorial)
 * [Wikimedia REST API](https://www.mediawiki.org/wiki/REST_API)
 
