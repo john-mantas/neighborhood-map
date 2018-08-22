@@ -130,7 +130,7 @@ class App extends Component {
         <main>
           <Menu parentState={this.state} search={this.searchHandler}>
             {this.state.activeLocations.map((m, index) => (
-              <li key={index} onClick={event => this.activateMarker(index)} role="button">
+              <li key={index} onClick={event => this.activateMarker(index)} role="button" tabIndex="0">
                 {m.title}
               </li>
             ))}

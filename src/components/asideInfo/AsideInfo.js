@@ -30,7 +30,7 @@ class Asideinfo extends React.Component {
   render() {
     return (
       <aside className={this.props.parentState.asideShowing ? "aside-container is-open" : "aside-container"}>
-        <button className="aside-close" onClick={this.props.toggleAside}><i className="material-icons">close</i></button>
+        <button className="aside-close" onClick={this.props.toggleAside} aria-label="close"><i className="material-icons" aria-hidden="true">close</i></button>
         {this.state.status
           ? <div>
             <div className="aside-image" role="img" aria-label={this.state.data.title} style={{ backgroundImage: `url(${this.state.imageUrl})` }}></div>

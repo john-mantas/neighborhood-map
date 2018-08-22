@@ -34,7 +34,6 @@ class Menu extends React.Component {
           {this.props.children}
         </ul>
       </nav>
-
     );
   }
 }

@@ -5,8 +5,8 @@ class Header extends React.Component {
   render() {
     return (
       <header className="header">
-        <button className="header__menu-btn" onClick={this.props.toggleMenu}>
-          <i className="material-icons">
+        <button className="header__menu-btn" onClick={this.props.toggleMenu} aria-label={this.props.parentState.menuShowing ? `close` : `search`}>
+          <i className="material-icons" aria-hidden="true">
             {this.props.parentState.menuShowing ? `close` : `search`}
           </i>
         </button>
