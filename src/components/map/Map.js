@@ -127,13 +127,18 @@ class Map extends React.Component {
     this.props.update()
   }
 
+  errorHandler = () => {
+    alert('An error occured while loading the map')
+  }
+
   componentWillMount() {
-    let script = document.createElement('script')
-    script.setAttribute('async', '')
-    script.setAttribute('defer', '')
-    script.setAttribute("src", `https://maps.googleapis.com/maps/api/js?key=${this.state.apiKey}`)
-    document.body.appendChild(script)
-    script.addEventListener('load', this.initMap)
+    let mapScript = document.createElement('script')
+    mapScript.setAttribute('async', '')
+    mapScript.setAttribute('defer', '')
+    mapScript.setAttribute("src", `https://maps.googleapis.com/maps/api/js?key=${this.state.apiKey}`)
+    document.body.appendChild(mapScript)
+    mapScript.onerror = this.errorHandler
+    mapScript.onload = this.initMap
   }
 
   render() {
