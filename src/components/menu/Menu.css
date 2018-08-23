@@ -80,18 +80,18 @@
   }
 
   .search {
-    width: 70%;
     margin: 1.5em auto;
     font-size: 1.6em;
-  }
-  .places-list {
-    font-size: 2em;
   }
 }
 
 @media only screen and (min-width: 1025px) {
   .search {
-    width: 50%;
     font-size: 1.3em;
+  }
+  
+  .menu {
+    display: flex;
+    width: 30%;
   }
 }
