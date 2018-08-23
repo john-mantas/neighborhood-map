@@ -1,5 +1,5 @@
 # Neighborhood Map - React
-A responsive browser based app that features an interactive map which includes locations and informations about each one.
+A responsive and progressive web app that features an interactive map which includes locations and informations about each one.
 
 This is the final project for the Udacity Front End developer Nanodegree program.
 
@@ -15,10 +15,21 @@ or
 2. Unzip the downloaded file
 
 ## Installing
-* On your command line navigate to the folder of the project
-* install the project dependencies with `npm install`
-* start the development server with `npm start`
-* open a browser and type `localhost:3000`
+
+**for the development**
+
+On your command line navigate to the folder of the project
+1. install the project dependencies with `npm install`
+2. start the development server with `npm start`
+3. open a browser and type `localhost:3000`
+
+**for production build**
+
+On your command line run `npm run build`
+* Builds the app for production to the build folder
+* It correctly bundles React in production mode and optimizes the build for the best performance
+* The build is minified and the filenames include the hashes
+* It includes a service worker so that your app loads from local cache on future visits
 
 ## Built with
 * HTML5
