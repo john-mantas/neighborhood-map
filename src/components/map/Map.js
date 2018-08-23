@@ -131,6 +131,10 @@ class Map extends React.Component {
     alert('An error occured while loading the map')
   }
 
+  gm_authFailure() {
+    window.alert("Google Maps authentication failed")
+  }
+
   componentWillMount() {
     let mapScript = document.createElement('script')
     mapScript.setAttribute('async', '')
@@ -139,6 +143,10 @@ class Map extends React.Component {
     document.body.appendChild(mapScript)
     mapScript.onerror = this.errorHandler
     mapScript.onload = this.initMap
+  }
+
+  componentDidMount() {
+    window.gm_authFailure = this.gm_authFailure;
   }
 
   render() {
