@@ -32,6 +32,13 @@ class App extends Component {
     this.setState({ asideShowing: true, asideData: data })
   }
 
+  resetMarkers = (arr) => {
+    arr.forEach(marker => {
+      marker.setAnimation(null)
+      marker.infoWindow.close()
+    })
+  }
+
   searchHandler = (str) => {
     // RegExp from MDN
     const term = new RegExp(str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i')
@@ -39,6 +46,7 @@ class App extends Component {
       term.test(f.title)
     ))
     this.setState({ activeLocations: results })
+    this.resetMarkers(this.state.markers)
     this.updateMap()
   }
 
@@ -62,8 +70,6 @@ class App extends Component {
         animation: window.google.maps.Animation.DROP,
         id: index
       })
-      allMarkers.push(marker)
-      bounds.extend(allMarkers[index].position)
 
       // Create the infoWindow
       let infoWindow = new window.google.maps.InfoWindow({
@@ -73,8 +79,13 @@ class App extends Component {
                   </div>`
       })
 
+      marker.infoWindow = infoWindow
+      allMarkers.push(marker)
+      bounds.extend(allMarkers[index].position)
+
       // Listeners for markers and infowindows
       marker.addListener('click', () => {
+        this.resetMarkers(allMarkers)
         infoWindow.open(this.state.map, marker)
       })
       window.google.maps.event.addListener(infoWindow, 'closeclick', function () {
@@ -97,7 +108,7 @@ class App extends Component {
   activateMarker = (index) => {
     window.google.maps.event.trigger(this.state.markers[index], "click")
     this.state.markers[index].setAnimation(window.google.maps.Animation.BOUNCE)
-    this.toggleMenu()
+    window.screen.width < 1025 && this.toggleMenu()
   }
 
   componentDidMount() {
